@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %}Signup{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h1 class="mt-5">Signup</h1>
+        {% if form.errors %}
+        <div class="errors">
+            <ul>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        <form class="p-4 p-md-5 border rounded-3 bg-light" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-floating mb-3">
+                <label for="floatingInput">Enter UserName</label>
+                {% render_field form.username class='form-control' %}       
+            </div>
+            <div class="form-floating mb-3">
+                <label for="floatingInput">First Name</label>
+                {% render_field form.first_name class='form-control' %}       
+            </div>
+            <div class="form-floating mb-3">
+                <label for="floatingInput">Last Name</label>
+                {% render_field form.last_name class='form-control' %}       
+            </div>
+            <div class="form-floating mb-3">
+                <label for="floatingInput">Email</label>
+                {% render_field form.email class='form-control' %}       
+            </div>
+            <div class="form-floating mb-3">
+                <label for="floatingInput">Password</label>
+                {% render_field form.password1 class='form-control' %}       
+            </div>
+            <div class="form-floating mb-3">
+                <label for="floatingInput">Confirm Password </label>
+                {% render_field form.password2 class='form-control' %}       
+            </div>
+            <div class="form-floating mb-3">
+                <label for="floatingInput">Line1</label>
+                {% render_field form.address_line1 class='form-control' %}       
+            </div>
+            <div class="form-floating mb-3">
+                <label for="floatingInput">City</label>
+                {% render_field form.city class='form-control' %}       
+            </div>
+            <div class="form-floating mb-3">
+                <label for="floatingInput">State</label>
+                {% render_field form.state class='form-control' %}       
+            </div>
+            <div class="form-floating mb-3">
+                <label for="floatingInput">Pin Code</label>
+                {% render_field form.pincode class='form-control' %}       
+            </div>
+            <div class="form-floating mb-3">
+                <label for="floatingInput">User Type</label>
+                {% render_field form.user_type class='form-control' %}       
+            </div>
+            
+            
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+            <button><a href="{% url 'login'%}">Login</a></button>
+            
+        </form>
+    </div>
+</div>
+{% endblock %}
